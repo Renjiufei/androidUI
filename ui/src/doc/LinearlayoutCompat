@@ -1,0 +1,8 @@
+LinearLayoutCompat
+
+
+view的绘制会经过三个方法。
+onmeasure,onlayout,ondraw 三个方法
+onmeasure，测量自身，和里面的所有子控件，
+onlayout 摆放所有的子控件，
+ondraw，绘制布局。

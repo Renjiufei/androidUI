@@ -1,0 +1,213 @@
+自定义属性动画框架。
+1.偷天换日，给每一个需要配置自定义属性的子控件外面包裹一层自定容器。
+做一个自定义容器(22)
+解析xml,获取自定义属性
+1.viewgroup.addView();
+
+
+2.如何拿到所有子控件里面的参数
+2.2 控制每一个子控件执行参数响应的动画。
+分析 xml是如何加载到代码中的。（源码里面是通过哪一个类将xml布局加载进来的，解析xml,实例化每一个控件，并将控件里的属性设置到view身上）
+layoutInflate类
+phoneWindow类。
+先实例化
+installDecor();
+ mContentParent.removeAllViews();
+  setContentView(int layoutResID) 之前会初始化installDecor();，然后执行 mContentParent.removeAllViews();
+
+  分析layoutInflate类  （加载解析xml的类）一个抽象类
+  通过service 去创建Layoutinfalt的实例。
+
+
+
+
+
+   View createViewFromTag(View parent, String name, Context context, AttributeSet attrs,
+              boolean ignoreThemeAttr) {
+              //name是一个view的话直接去拿里面的class
+              <view
+              class=""
+              ></view>
+          if (name.equals("view")) {
+              name = attrs.getAttributeValue(null, "class");
+          }
+
+          // Apply a theme wrapper, if allowed and one is specified.
+          if (!ignoreThemeAttr) {
+              final TypedArray ta = context.obtainStyledAttributes(attrs, ATTRS_THEME);
+              final int themeResId = ta.getResourceId(0, 0);
+              if (themeResId != 0) {
+                  context = new ContextThemeWrapper(context, themeResId);
+              }
+              ta.recycle();
+          }
+
+          if (name.equals(TAG_1995)) {
+              // Let's party like it's 1995!
+              return new BlinkLayout(context, attrs);
+          }
+
+          try {
+          //实例化view
+              View view;
+              if (mFactory2 != null) {
+                    //工厂提供mFactory2，mFactory
+                  view = mFactory2.onCreateView(parent, name, context, attrs);
+              } else if (mFactory != null) {
+                  view = mFactory.onCreateView(name, context, attrs);
+              } else {
+                  view = null;
+              }
+
+              if (view == null && mPrivateFactory != null) {
+              mPrivateFactory默认的factroy类
+                  view = mPrivateFactory.onCreateView(parent, name, context, attrs);
+              }
+
+              if (view == null) {
+                  final Object lastContext = mConstructorArgs[0];
+                  mConstructorArgs[0] = context;
+                  try {
+                      if (-1 == name.indexOf('.')) {
+                          view = onCreateView(parent, name, attrs);
+                      } else {
+                          view = createView(name, null, attrs);
+                      }
+                  } finally {
+                      mConstructorArgs[0] = lastContext;
+                  }
+              }
+
+              return view;
+          } catch (InflateException e) {
+              throw e;
+
+          } catch (ClassNotFoundException e) {
+              final InflateException ie = new InflateException(attrs.getPositionDescription()
+                      + ": Error inflating class " + name);
+              ie.initCause(e);
+              throw ie;
+
+          } catch (Exception e) {
+              final InflateException ie = new InflateException(attrs.getPositionDescription()
+                      + ": Error inflating class " + name);
+              ie.initCause(e);
+              throw ie;
+          }
+      }
+
+源码中分析自定义控件和系统控件（是否有前缀，后缀。）
+    clazz = mContext.getClassLoader().loadClass(
+                                prefix != null ? (prefix + name) : name).asSubclass(View.class);
+
+   然后我们可以做一个自定义LayoutInflate();做一个偷天换日。
+   自己做，解析xml,拿到子控件里面的参数。
+    例子做一个视差动画。viewpager和里面的多个控件
+    重写oncreateView();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+使用的时候比较困难，
+低耦合，高内聚
+高度解耦，条目点击事件没有
+自定义条目点击事件。条目点击事件的效果。
+1.给childview 添加点击事件。
+2.使用callback监听。
+  //这个position可能是以前的position
+  mOnItemClickListener.onItemClick(v, holder.getLayoutPosition());
+  1.
+  封装一个baseRecyclerAdapter
+  2.position错位问题
+  3.设置条目的长按事件
+
+
+
+
+
+首先要做到
+1.不使用view.inflate,使用下面的方式（如果要使用这种方式，就要（item布局）添加一个父布局）
+root不为null,boolean值必须为false
+   MyViewHolder holder = new MyViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(android.R.layout.simple_list_item_1,viewGroup,false));
+2.为什么fragment的oncreat时，又可以渲染呢
+
+
+
+动态添加，和动态删除，布局会动态更新的，
+数据的更新
+移除
+list.remove(position);
+notifyItemRemoved();
+插入
+list.add(position,数据);
+notifyItemInserted();
+
+
+
+//添加条目默认动画的时候，添加第一个条目的时候动画显示不出来，可以设置全部更新，还可以设置滚动到第一个条目。
+2.如何设置条目点击事件。
+
+
+
+
+3.recyclerview没有自己的分割线，需要自己绘制
+recyclerView。ItemDecration();
