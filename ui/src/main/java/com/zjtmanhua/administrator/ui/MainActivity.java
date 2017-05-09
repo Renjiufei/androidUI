@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         list = new ArrayList<String>();
         for (int i = 0; i < 60; i++) {
             list.add("item" + i);

@@ -31,11 +31,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:25.3.1'
-
     //引入弘扬的万能适配器  https://github.com/hongyangAndroid/baseAdapter/tree/master/base-adapter-library
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.zhy:base-adapter:3.0.3'
-
-
     compile 'com.android.support:design:25.3.1'
+
 }

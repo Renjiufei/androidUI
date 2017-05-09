@@ -31,7 +31,7 @@ public class ParallaxFragment extends Fragment {
         //3.自己搞定创建视图的过程
         //4.获取视图相关的自定义属性的值
         //5.通过设置布局做一个视差属性动画
-//        MylayoutInflat inflater=new MylayoutInflat(inflater,getActivity(),this);
+        MylayoutInflat inflaters=new MylayoutInflat(inflater,getActivity(),this);
 
 
 
